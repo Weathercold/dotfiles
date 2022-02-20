@@ -1,0 +1,8 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: .
+  keepdot: true
+dotfiles:
+profiles:
