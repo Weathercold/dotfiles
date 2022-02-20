@@ -1,0 +1,42 @@
+# User dotfiles
+
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: ./
+  keepdot: true
+
+dotfiles:
+  d_alacritty:
+    src: alacritty
+    dst: ~/.config/alacritty
+  d_sway:
+    src: sway
+    dst: ~/.config/sway
+  d_waybar:
+    src: waybar
+    dst: ~/.config/waybar
+  d_swaylock:
+    src: swaylock
+    dst: ~/.config/swaylock
+  f_bashrc:
+    src: user/.bashrc
+    dst: ~/.bashrc
+  f_bash_profile:
+    src: user/.bash_profile
+    dst: ~/.bash_profile
+  f_profile:
+    src: user/.profile
+    dst: ~/.profile
+
+profiles:
+  Gentowo:
+    dotfiles:
+    - d_alacritty
+    - d_sway
+    - d_waybar
+    - d_swaylock
+    - f_bashrc
+    - f_bash_profile
+    - f_profile

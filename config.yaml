@@ -1,8 +1,26 @@
+# System dotfiles
+
 config:
   backup: true
   banner: true
   create: true
-  dotpath: .
+  dotpath: ./
   keepdot: true
+
 dotfiles:
+  d_portage:
+    src: portage
+    dst: /etc/portage
+  d_kernels:
+    src: kernels
+    dst: /etc/kernels
+  d_bash:
+    src: bash
+    dst: /etc/bash
+
 profiles:
+  Gentowo:
+    dotfiles:
+    - d_portage
+    - d_kernels
+    - d_bash
