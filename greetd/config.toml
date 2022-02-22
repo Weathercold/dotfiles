@@ -1,0 +1,9 @@
+[terminal]
+# The VT to run the greeter on. Can be "next", "current" or a number
+# designating the VT.
+vt = next
+
+# The default session, also known as the greeter.
+[default_session]
+command = "tuigreet -tr --asterisks --cmd 'systemd-cat -t sway sway' --power-shutdown 'sudo systemctl poweroff' --power-reboot 'sudo systemctl reboot'"
+user = greetd

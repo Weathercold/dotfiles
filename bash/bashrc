@@ -108,4 +108,7 @@ done
 unset use_color sh
 
 # Aliases
+# Enable aliases for sudo
+alias sudo="sudo "
 alias dotdrop="/usr/src/dotfiles/dotdrop.sh"
+alias ani="/usr/src/ani-cli/ani-cli"

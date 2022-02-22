@@ -1,12 +1,9 @@
-# User dotfiles
-
 config:
   backup: true
   banner: true
   create: true
   dotpath: ./
   keepdot: true
-
 dotfiles:
   d_alacritty:
     src: alacritty
@@ -29,7 +26,9 @@ dotfiles:
   f_profile:
     src: user/.profile
     dst: ~/.profile
-
+  f_zshrc:
+    src: user/.zshrc
+    dst: ~/.zshrc
 profiles:
   Gentowo:
     dotfiles:
@@ -40,3 +39,4 @@ profiles:
     - f_bashrc
     - f_bash_profile
     - f_profile
+    - f_zshrc
