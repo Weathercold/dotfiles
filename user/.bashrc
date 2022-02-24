@@ -16,5 +16,6 @@ fi
 
 
 # Put your fun stuff here.
-neofetch
 alias dotdrop="/usr/src/dotfiles/dotdrop.sh -c /usr/src/dotfiles/config-user.yaml"
+
+neofetch

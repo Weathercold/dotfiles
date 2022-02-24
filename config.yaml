@@ -17,6 +17,9 @@ dotfiles:
   d_greetd:
     src: greetd
     dst: /etc/greetd
+  d_zsh:
+    src: zsh
+    dst: /etc/zsh
 profiles:
   Gentowo:
     dotfiles:
@@ -24,3 +27,4 @@ profiles:
     - d_bash
     - f_fstab
     - d_greetd
+    - d_zsh
