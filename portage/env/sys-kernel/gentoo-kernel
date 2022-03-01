@@ -1,7 +1,0 @@
-mount | grep " /efi "  >/dev/null || mount /dev/nvme0n1p1 /efi
-mount | grep " /boot " >/dev/null || mount /dev/nvme0n1p4 /boot
-
-post_pkg_postinst() {
-    umount /efi
-    umount /boot
-}

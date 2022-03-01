@@ -1,0 +1,13 @@
+output eDP-1 bg /home/weathercold/Pictures/wallpapers/1.jpg fill
+
+font pango:inconsolata 13
+default_border none
+default_floating_border none
+gaps {
+    inner 15
+    outer 3
+}
+
+#client.{
+    
+#}
