@@ -2,8 +2,8 @@
 colors:
   # Default colors
   primary:
-    background: '#1d1f21'
-  #  foreground: '#c5c8c6'
+    background: '#FCFCFC'
+    foreground: '#5C6166'
 
     # Bright and dim foreground colors
     #
@@ -90,40 +90,40 @@ colors:
   #  background: CellForeground
 
   # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
-  #  red:     '#cc6666'
-  #  green:   '#b5bd68'
-  #  yellow:  '#f0c674'
-  #  blue:    '#81a2be'
-  #  magenta: '#b294bb'
-  #  cyan:    '#8abeb7'
-  #  white:   '#c5c8c6'
+  normal:
+    black:   '#FCFCFC'
+    red:     '#E65050'
+    green:   '#6CBF43'
+    yellow:  '#F2AE49'
+    blue:    '#399EE6'
+    magenta: '#A37ACC'
+    cyan:    '#4CBF99'
+    white:   '#5C6166'
 
   # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#d54e53'
-  #  green:   '#b9ca4a'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#c397d8'
-  #  cyan:    '#70c0b1'
-  #  white:   '#eaeaea'
+  bright:
+    black:   '#FCFCFC' # TODO
+    red:     '#F2A6A6'
+    green:   '#87D96C'
+    yellow:  '#FFD173'
+    blue:    '#73D0FF'
+    magenta: '#DFBFFF'
+    cyan:    '#95E6CB'
+    white:   '#5C6166' # TODO
 
   # Dim colors
   #
   # If the dim colors are not set, they will be calculated automatically based
   # on the `normal` colors.
   #dim:
-  #  black:   '#131415'
-  #  red:     '#864343'
-  #  green:   '#777c44'
-  #  yellow:  '#9e824c'
-  #  blue:    '#556a7d'
-  #  magenta: '#75617b'
-  #  cyan:    '#5b7d78'
-  #  white:   '#828482'
+  #  black:   '#'
+  #  red:     '#'
+  #  green:   '#'
+  #  yellow:  '#'
+  #  blue:    '#'
+  #  magenta: '#'
+  #  cyan:    '#'
+  #  white:   '#'
 
   # Indexed Colors
   #

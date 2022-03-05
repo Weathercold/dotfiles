@@ -23,6 +23,7 @@ set $menu "rofi -show run"
 # Basics:
 #
     xwayland enable
+    exec export XDG_CURRENT_DESKTOP=Unity
     focus_wrapping no
 
 #
@@ -117,6 +118,11 @@ include ayu-light
     bindsym --no-repeat $mod+9 workspace number 9
     bindsym --no-repeat $mod+0 workspace number 10
 
+    bindsym $mod+minus exec WS=$(swaymsg -t get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
+                            swaymsg workspace number $((WS <= 1 ? 1 : WS-1))
+    bindsym $mod+equal exec WS=$(swaymsg -t get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
+                            swaymsg workspace number $((WS >= 10 ? 10 : WS+1))
+
     # Move focused container to workspace
     bindsym --no-repeat $mod+Shift+1 move container to workspace number 1
     bindsym --no-repeat $mod+Shift+2 move container to workspace number 2
@@ -130,6 +136,14 @@ include ayu-light
     bindsym --no-repeat $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # FIXME
+    bindsym $mod+Shift+minus exec WS=$(swaymsg -t get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
+                                  swaymsg move container to workspace number $((WS <= 1 ? 1 : WS-1)) && \
+                                  swaymsg workspace number $((WS <= 1 ? 1 : WS-1))
+    bindsym $mod+Shift+equal exec WS=$(swaymsg -t get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
+                                  swaymsg move container to workspace number $((WS >= 10 ? 10 : WS+1)) && \
+                                  swaymsg workspace number $((WS >= 10 ? 10 : WS+1))
 
 #
 # Layout stuff:
@@ -158,10 +172,10 @@ include ayu-light
     # You can send windows there and get them back later.
 
     # Show the next scratchpad window or hide the focused scratchpad window
-    bindsym --no-repeat $mod+minus scratchpad show
+    bindsym --no-repeat $mod+grave scratchpad show
 
     # Move the currently focused window to the scratchpad
-    bindsym --no-repeat $mod+Shift+minus move scratchpad
+    bindsym --no-repeat $mod+Shift+grave move scratchpad
 
 #
 # Resizing containers:
@@ -208,5 +222,3 @@ include ayu-light
 
     bindsym XF86MonBrightnessDown exec light -U 5
     bindsym XF86MonBrightnessUp exec light -A 5
-
-include /etc/sway/config.d/*

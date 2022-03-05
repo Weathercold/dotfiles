@@ -20,6 +20,9 @@ dotfiles:
   d_zsh:
     src: zsh
     dst: /etc/zsh
+  f_nanorc:
+    src: etc/nanorc
+    dst: /etc/nanorc
 profiles:
   Gentowo:
     dotfiles:
@@ -28,3 +31,4 @@ profiles:
     - f_fstab
     - d_greetd
     - d_zsh
+    - f_nanorc
