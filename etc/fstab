@@ -1,9 +1,7 @@
 # /etc/fstab: static file system information.
 #
 # noatime turns off atimes for increased performance (atimes normally aren't 
-# needed); notail increases performance of ReiserFS (at the expense of storage 
-# efficiency).  It's safe to drop the noatime options if you want and to 
-# switch between notail / tail freely.
+# needed). It's safe to drop the noatime options if you want.
 #
 # The root filesystem should have a pass number of either 0 or 1.
 # All other filesystems should have a pass number of 0 or greater than 1.
@@ -13,8 +11,6 @@
 
 # <fs>			<mountpoint>	<type>		<opts>		<dump/pass>
 
-# NOTE: If your BOOT partition is ReiserFS, add the notail option to opts.
-#
 # NOTE: Even though we list ext4 as the type here, it will work with ext2/ext3
 #       filesystems.  This just tells the kernel to use the ext4 driver.
 #
@@ -23,7 +19,7 @@
 #       documentation for details on setting a label. To obtain the UUID, use
 #       the blkid(8) command.
 
-/dev/nvme0n1p1		/efi		vfat		noauto,noatime	1 2
-/dev/nvme0n1p4		/boot		vfat		noauto,noatime	1 2
-/dev/nvme0n1p5		/		ext4		noatime		0 1
-#/dev/cdrom		/mnt/cdrom	auto		noauto,ro	0 0
+PARTUUID=1d698dcb-bb17-4182-a3bb-01a30652f106	/efi		vfat		noauto,noatime	1 2
+PARTUUID=f267d979-cfac-0a46-a361-bc024ea2a768	/boot		vfat		noauto,noatime	1 2
+PARTUUID=27e373c1-5125-5f47-b1f4-0ea567efa629	/		ext4		noatime	0 1
+#/dev/cdrom					/mnt/cdrom	auto		noauto	0 0

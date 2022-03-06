@@ -29,6 +29,12 @@ dotfiles:
   f_zshrc:
     src: user/.zshrc
     dst: ~/.zshrc
+  f_dotsync.timer:
+    src: systemd-user/dotsync.timer
+    dst: ~/.config/systemd/user/dotsync.timer
+  f_dotsync.service:
+    src: systemd-user/dotsync.service
+    dst: ~/.config/systemd/user/dotsync.service
 profiles:
   Gentowo:
     dotfiles:
@@ -40,3 +46,5 @@ profiles:
     - f_bash_profile
     - f_profile
     - f_zshrc
+    - f_dotsync.timer
+    - f_dotsync.service

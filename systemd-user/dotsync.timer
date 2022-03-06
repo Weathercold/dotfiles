@@ -1,0 +1,7 @@
+[Unit]
+Description=Dotfiles Synchronization
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=1m
+Persistent=true
