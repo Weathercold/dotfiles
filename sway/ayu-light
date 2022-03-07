@@ -1,13 +1,14 @@
+### Sway theme
 output eDP-1 bg #FFDFB3 solid_color
-default_border pixel 3
-default_floating_border pixel 3
+default_border pixel 4
+default_floating_border none
 gaps {
     inner 15
     outer 3
 }
 font pango:inconsolata 13
 
-# GTK theme
+### GTK theme
 exec_always gsettings set org.gnome.desktop.interface {
     gtk-theme "Adwaita"
     icon-theme "Fluent"
@@ -18,6 +19,9 @@ exec_always gsettings set org.gnome.desktop.interface {
     clock-show-seconds true
 }
 
-#client.{
-    
-#}
+### Waybar theme
+exec_always echo '@import "ayu-light.css";' > ~/.config/waybar/style.css
+
+### Alacritty theme
+exec_always echo -e "import:\n  - ~/.config/alacritty/ayu-light.yml"\
+            > ~/.config/alacritty/style.yml

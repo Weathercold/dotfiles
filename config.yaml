@@ -23,6 +23,15 @@ dotfiles:
   f_nanorc:
     src: etc/nanorc
     dst: /etc/nanorc
+  f_discache.timer:
+    src: systemd/system/discache.timer
+    dst: /etc/systemd/system/discache.timer
+  f_discache.service:
+    src: systemd/system/discache.service
+    dst: /etc/systemd/system/discache.service
+  f_eix-sync.conf:
+    src: etc/eix-sync.conf
+    dst: /etc/eix-sync.conf
 profiles:
   Gentowo:
     dotfiles:
@@ -32,3 +41,6 @@ profiles:
     - d_greetd
     - d_zsh
     - f_nanorc
+    - f_discache.timer
+    - f_discache.service
+    - f_eix-sync.conf

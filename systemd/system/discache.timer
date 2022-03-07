@@ -1,0 +1,7 @@
+[Unit]
+Description=Clean Cache
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=1m
+Persistent=true

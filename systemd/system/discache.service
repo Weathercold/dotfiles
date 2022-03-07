@@ -1,0 +1,8 @@
+[Unit]
+Description=Clean Cache
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/emaint cleanconfmem -f
+ExecStart=/usr/sbin/emaint cleanresume -f
+ExecStart=/usr/bin/eclean-dist -dq

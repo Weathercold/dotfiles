@@ -50,7 +50,7 @@ set $menu "rofi -show run"
     }
 
 ### Style
-include ayu-light
+include style
 
 ### Key bindings
 #
