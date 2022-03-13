@@ -22,15 +22,20 @@ yellow	#F2AE49	#FFD173	#	ayu
 
 * {
     padding: 0 9px;
-    background: transparent;
 
     font-family: Inconsolata Medium;
     font-size: 17px;
-    color: #5C6166;
     text-shadow: none;
 }
 
-window#waybar {}
+#waybar {
+    background: transparent;
+    transition: background-color 0.2s;
+}
+
+#waybar.ayu-light {
+    color: #6C7680;
+}
 
 tooltip {
     background: #FCFCFC;
@@ -40,7 +45,7 @@ tooltip label {}
 
 .modules-left {}
 
-#clock {
+##clock {
     border-radius: 15px 0 0 15px;
     background: #FCFCFC;
 }
@@ -58,13 +63,16 @@ tooltip label {}
     color: #FCFCFC;
 }
 
-#mpd {
-    border-radius: 0 15px 15px 0;
+#backlight {
+    background: @theme_base_color;
+}
+
+#pulseaudio {
     background: #FCFCFC;
 }
 
-#tray {
-    border-radius: 15px;
+#mpd {
+    border-radius: 0 15px 15px 0;
     background: #FCFCFC;
 }
 
@@ -72,7 +80,7 @@ tooltip label {}
 .modules-center {}
 
 #workspaces {
-    border-radius: 15px;
+    border-radius: 15px 0 0 15px;
     padding: 0;
     background: #FCFCFC;
 }
@@ -89,23 +97,15 @@ tooltip label {}
 }
 
 #mode {
-    border-radius: 15px;
+    border-radius: 0 15px 15px 0;
     background: #FCFCFC;
 }
 
 
 .modules-right {}
 
-#pulseaudio {
-    border-radius: 15px 0 0 15px;
-    background: #FCFCFC;
-}
-
-#backlight {
-    background: @theme_base_color;
-}
-
 #temperature {
+    border-radius: 15px 0 0 15px;
     background: #FFAD66;
 }
 #temperature.critical {
@@ -113,22 +113,21 @@ tooltip label {}
 }
 
 #network {
-    background: lightskyblue;
+    background: #73D0FF;
 }
 
 #cpu {
     background: darkslateblue;
-    color: white;
+    color: #FCFCFC;
 }
 
 #memory {
-    background: mediumpurple;
+    background: #695380;
+    color: #FCFCFC;
 }
 
 #battery {
     border-radius: 0 15px 15px 0;
-}
-#battery.full {
     background: #87D96C;
 }
 #battery.good {

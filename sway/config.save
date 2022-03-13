@@ -62,7 +62,7 @@ bar swaybar_command waybar
 floating_modifier $mod normal
 
 ### Normal mode ###
-mode normal {
+#mode "normal" {
     ## Basics ##
     # Kill focused window / sway
     bindsym --no-repeat $mod+Escape kill
@@ -179,13 +179,13 @@ mode normal {
     bindsym XF86MonBrightnessUp exec light -A 5
 
     ## Modes ##
-    bindsym --no-repeat $mod+g mode launch
-    bindsym --no-repeat $mod+r mode resize
-}
-exec_always sleep 0.5 && swaymsg mode normal
+    bindsym --no-repeat $mod+g mode "launch"
+    bindsym --no-repeat $mod+r mode "resize"
+#}
+#exec_always swaymsg mode "normal"
 
 ### Resize mode ###
-mode resize bindsym {
+mode "resize" bindsym {
     # left will shrink the containers width
     # right will grow the containers width
     # up will shrink the containers height
@@ -201,11 +201,10 @@ mode resize bindsym {
     Right resize grow width 10px
 
     # Return to normal mode
-    --no-repeat Escape mode normal
+    --no-repeat Escape mode default
 }
 
-mode launch bindsym --no-repeat {
-    t exec $term | swaymsg -p mode normal
-    f exec $browser | swaymsg -p mode normal
-    Escape mode normal
+mode "launch" bindsym --no-repeat {
+    t exec $term && swaymsg -p mode default
+    f exec $browser && swaymsg -p mode default
 }
