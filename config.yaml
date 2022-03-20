@@ -17,9 +17,6 @@ dotfiles:
   d_greetd:
     src: greetd
     dst: /etc/greetd
-  d_zsh:
-    src: zsh
-    dst: /etc/zsh
   f_nanorc:
     src: etc/nanorc
     dst: /etc/nanorc
@@ -39,7 +36,6 @@ profiles:
     - d_bash
     - f_fstab
     - d_greetd
-    - d_zsh
     - f_nanorc
     - f_discache.timer
     - f_discache.service
