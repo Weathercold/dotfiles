@@ -1,8 +1,8 @@
 [Unit]
 Description=Dotfiles Synchronization
+After=network.target
 
 [Service]
 Type=oneshot
 WorkingDirectory=/home/weathercold/src/dotfiles
-ExecStart=/usr/bin/sudo eix-remote update
-User=weathercold
+ExecStart=/home/weathercold/src/dotfiles/autocommit.sh

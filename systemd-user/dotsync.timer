@@ -5,3 +5,6 @@ Description=Dotfiles Synchronization
 OnCalendar=daily
 RandomizedDelaySec=1m
 Persistent=true
+
+[Install]
+WantedBy=timers.target

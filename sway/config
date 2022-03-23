@@ -11,12 +11,14 @@ set $left h
 set $down j
 set $up k
 set $right l
-# Your preferred terminal emulator
+# Your preferred applications
+set $menu rofi -show run
 set $term alacritty
-# Your preferred web browser
+set $editor nvim
+set $ide vscode
 set $browser firefox-bin
-# Your preferred application launcher
-set $menu "rofi -show run"
+set $torbrowser torbrowser-launcher
+
 
 #
 # Configuration
@@ -28,8 +30,8 @@ focus_wrapping no
 
 ### Idle ###
 exec swayidle -w \
-     timeout 600 'swaymsg "output eDP-1 dpms off"' \
-          resume 'swaymsg "output eDP-1 dpms on"' \
+     timeout 600 'swaymsg -p "output eDP-1 dpms off"' \
+          resume 'swaymsg -p "output eDP-1 dpms on"' \
     timeout 1200 'swaylock' \
     before-sleep 'swaylock'
 
@@ -41,15 +43,17 @@ input "1:1:AT_Translated_Set_2_keyboard" {
     repeat_rate 30
     xkb_options caps:swapescape
 }
-input "2:7:SynPS/2_Synaptics_TouchPad" {
+input "1739:52774:DELL09E3:00_06CB:CE26_Touchpad" {
     tap enabled
+    natural_scroll enabled
+    dwt enabled
 }
 
 ### Style ###
 include style
 
-### Status Bar ###
-bar swaybar_command waybar
+### Systemd Integration ###
+exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 
 #
 # Key bindings
@@ -171,10 +175,12 @@ mode normal {
 
     ## Shortcuts ##
     bindsym --no-repeat XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym --no-repeat Shift+XF86AudioMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+    bindsym Shift+XF86AudioLowerVolume exec pactl set-source-volume @DEFAULT_SOURCE@ -2%
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
-    #bindsym XF86AudioPlay exec ?
-
+    bindsym Shift+XF86AudioRaiseVolume exec pactl set-source-volume @DEFAULT_SOURCE@ +2% 
+    bindsym --no-repeat XF86AudioPlay exec mpc toggle
     bindsym XF86MonBrightnessDown exec light -U 5
     bindsym XF86MonBrightnessUp exec light -A 5
 
@@ -205,7 +211,12 @@ mode resize bindsym {
 }
 
 mode launch bindsym --no-repeat {
-    t exec $term | swaymsg -p mode normal
-    f exec $browser | swaymsg -p mode normal
+    m exec "swaymsg -p mode normal; $menu"
+    t exec "swaymsg -p mode normal; $term"
+    v exec "swaymsg -p mode normal; $term -e $editor"
+    j exec "swaymsg -p mode normal; $term -e journalctl -fn1000 --no-hostname"
+    e exec "swaymsg -p mode normal; $ide"
+    f exec "swaymsg -p mode normal; $browser"
+    d exec "swaymsg -p mode normal; $torbrowser"
     Escape mode normal
 }

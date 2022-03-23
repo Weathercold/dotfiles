@@ -1,0 +1,29 @@
+format = '$username$hostname$character'
+right_format = '$directory$cmd_duration$jobs'
+continuation_prompt = '$character'
+
+[username]
+format = '[$user]($style)'
+
+[hostname]
+format = '::[$hostname]($style)'
+
+[character]
+format = ' $symbol '
+
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style)'
+truncation_symbol = '…/'
+
+[cmd_duration]
+format = ' \[[$duration]($style)\]'
+show_milliseconds = true
+min_time = 1000
+#show_notifications = true
+#min_time_to_notify = 60_000
+
+[jobs]
+format = ' $symbol[$number]($style)'
+symbol = '+'
+number_threshold = 1

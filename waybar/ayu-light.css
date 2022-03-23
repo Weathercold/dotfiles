@@ -26,15 +26,13 @@ yellow	#F2AE49	#FFD173	#	ayu
     font-family: Inconsolata Medium;
     font-size: 17px;
     text-shadow: none;
+    color: #242936;
+
+    transition: background-color 0.2s;
 }
 
 #waybar {
     background: transparent;
-    transition: background-color 0.2s;
-}
-
-#waybar.ayu-light {
-    color: #6C7680;
 }
 
 tooltip {
@@ -43,10 +41,12 @@ tooltip {
 tooltip label {}
 
 
-.modules-left {}
-
-##clock {
-    border-radius: 15px 0 0 15px;
+/*
+ * Main
+ */
+/* Left */
+#clock {
+    border-radius: 14px 0 0 15px;
     background: #FCFCFC;
 }
 
@@ -58,13 +58,17 @@ tooltip label {}
     color: #CCCAC2;
 }
 
-#keyboard-state {
-    background: #87D96C;
+#backlight {
+    background: #242936;
+    color: #CCCAC2;
+}
+#backlight.dim {
+    background: #565B66;
     color: #FCFCFC;
 }
-
-#backlight {
-    background: @theme_base_color;
+#backlight.bright {
+    background: #FCFCFC;
+    color: #242936;
 }
 
 #pulseaudio {
@@ -76,11 +80,9 @@ tooltip label {}
     background: #FCFCFC;
 }
 
-
-.modules-center {}
-
+/* Center */
 #workspaces {
-    border-radius: 15px 0 0 15px;
+    border-radius: 15px;
     padding: 0;
     background: #FCFCFC;
 }
@@ -96,24 +98,18 @@ tooltip label {}
     background: #399EE6;
 }
 
-#mode {
-    border-radius: 0 15px 15px 0;
-    background: #FCFCFC;
+
+/* Right */
+#network {
+    border-radius: 15px 0 0 15px;
+    background: #73D0FF;
 }
 
-
-.modules-right {}
-
 #temperature {
-    border-radius: 15px 0 0 15px;
     background: #FFAD66;
 }
 #temperature.critical {
     background: #E65050;
-}
-
-#network {
-    background: #73D0FF;
 }
 
 #cpu {
@@ -138,4 +134,14 @@ tooltip label {}
 }
 #battery.critical {
     background: #E65050;
+}
+
+
+/*
+ * Mode
+ */
+/* Center */
+#mode {
+    border-radius: 15px;
+    background: #FCFCFC;
 }

@@ -1,5 +1,5 @@
 [{
-    "name": "main",
+    "name": "status",
 
     "layer": "top",
     "position": "top",
@@ -9,9 +9,9 @@
     "mode": "dock",
     "ipc": true,
 
-    "modules-left": ["clock", "idle_inhibitor", "backlight", "pulseaudio", "mpd"],
-    "modules-center": ["sway/workspaces"],
-    "modules-right": ["network", "temperature", "cpu", "memory", "battery"],
+    "modules-left": ["clock", "idle_inhibitor", "keyboard-state", "backlight", "pulseaudio", "mpd"],
+    "modules-center": ["sway/workspaces", "sway/mode"],
+    "modules-right": ["temperature", "network", "cpu", "memory", "battery"],
 
     "sway/workspaces": {
         "disable-scroll-wraparound": true,
@@ -58,15 +58,16 @@
         }
     },
     "mpd": {
-        "format": "{stateIcon}{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {volume}%",
-        "format-disconnected": "",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
+        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+        "format-disconnected": "Disconnected ",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
             "on": " "
         },
         "random-icons": {
+            "off": "<span color=\"#f53c3c\"></span> ",
             "on": " "
         },
         "repeat-icons": {
@@ -79,7 +80,8 @@
             "paused": "",
             "playing": ""
         },
-        "tooltip-format": "{artist}/{title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+        "tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -93,8 +95,9 @@
         "spacing": 10
     },
     "clock": {
+        "interval": 1,
         "timezone": "America/Montreal",
-        "format": "{:%m-%d %H:%m}",
+        "format": "{:%m-%d %H:%m:%S}",
         "tooltip-format": "<big>{:%B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
@@ -120,29 +123,30 @@
     },
     "battery": {
         "states": {
-            "good": 99,
+            "good": 95,
             "warning": 60,
             "critical": 30
         },
         "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%  {power}",
-        "format-good": "{icon} {capacity}%  {power}",
-        "format-icons": ["", "", "", "", ""],
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "interval": 30,
         "interface": "wlp1s0",
-        "format-wifi": " {signalStrength}%",
-        "format-disconnected": "",
-        "tooltip-format": "{} as {ipaddr}"
+        "interval": 30,
+        "format-wifi": "  {signalStrength}% as {ipaddr}",
+        "format-disconnected": "⚠  Disconnected",
+        "tooltip-format": "{ifname} on {}"
     },
     "pulseaudio": {
         "format": "{icon} {volume}% {format_source}",
-        "format-muted": " {volume}% {format_source}",
+        "format-muted": "  0% {format_source}",
         "format-bluetooth": "{icon} {volume}% {format_source}",
-        "format-bluetooth-muted": "  {volume}% {format_source}",
+        "format-bluetooth-muted": "  0% {format_source}",
         "format-source": " {volume}%",
-        "format-source-muted": " {volume}%",
+        "format-source-muted": " 0%",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -154,18 +158,16 @@
         },
         //"on-click": "pavucontrol"
     }
-},
+}/*,
 {
-    "name": "mode",
+    "name": "proc",
 
     "layer": "top",
-    "position": "bottom",
-    "height": 30,
-    "width": 100,
-    "margin": "0 15 15 15",
+    "position": "left",
+    "width": 0,
+    "margin": "15 0 15 0",
 
-    "mode": "overlay",
-    "ipc": true,
-    
-    "modules-center": ["sway/mode"]
-}]
+    "mode": "hide",
+    "exclusive": false,
+    "ipc": true
+}*/]

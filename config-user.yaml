@@ -32,6 +32,16 @@ dotfiles:
   f_dotsync.service:
     src: systemd-user/dotsync.service
     dst: ~/.config/systemd/user/dotsync.service
+  f_starship.toml:
+    src: starship.toml
+    dst: ~/.config/starship.toml
+  d_fish:
+    src: fish
+    dst: ~/.config/fish
+    chmod: '700'
+  d_neofetch:
+    src: neofetch
+    dst: ~/.config/neofetch
 profiles:
   Gentowo:
     dotfiles:
@@ -44,3 +54,6 @@ profiles:
     - f_profile
     - f_dotsync.timer
     - f_dotsync.service
+    - f_starship.toml
+    - d_fish
+    - d_neofetch

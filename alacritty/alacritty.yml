@@ -50,7 +50,7 @@ window:
     y: 5
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -263,10 +263,10 @@ cursor:
 # shell.
 #
 # Default: user login shell
-#shell:
-#  program: /bin/bash
-#  args:
-#    - --login
+shell:
+  program: /bin/fish
+  args:
+    - --interactive
 
 # Startup directory
 #
@@ -364,10 +364,11 @@ mouse:
 # And optionally:
 #
 # - `mods` (see key bindings)
-#mouse_bindings:
+mouse_bindings:
 #  - { mouse: Right,                 action: ExpandSelection }
 #  - { mouse: Right,  mods: Control, action: ExpandSelection }
-#  - { mouse: Middle, mode: ~Vi,     action: PasteSelection  }
+  - { mouse: 275,     action: Copy  }
+  - { mouse: 276,     action: Paste  }
 
 # Key bindings
 #

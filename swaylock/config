@@ -1,4 +1,9 @@
 daemonize
 ignore-empty-password
+
+fade-in=0.1
+screenshots
+effect-blur=10x10
+clock
 font=inconsolata
 font-size=20
