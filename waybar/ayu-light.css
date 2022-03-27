@@ -141,7 +141,12 @@ tooltip label {}
  * Mode
  */
 /* Center */
+#waybar.mode {
+    font-size: 30px;
+}
+
 #mode {
-    border-radius: 15px;
+    border: 2px solid #565866;
+    border-radius: 30px;
     background: #FCFCFC;
 }

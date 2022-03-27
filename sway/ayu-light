@@ -1,12 +1,13 @@
 ### Sway theme
-output eDP-1 bg #FFDFB3 solid_color
+output * bg #FFDFB3 solid_color
+seat * xcursor_theme fuchsia 30
+font pango:inconsolata 13
 default_border pixel 4
 default_floating_border none
 gaps {
     inner 15
     outer 3
 }
-font pango:inconsolata 13
 
 ### GTK theme
 exec_always gsettings set org.gnome.desktop.interface {
@@ -16,7 +17,7 @@ exec_always gsettings set org.gnome.desktop.interface {
     cursor-size          30
     cursor-blink-time    500
     cursor-blink-timeout 0
-    font-name "Cantarell 12"
+    font-name            "Cantarell 12"
     monospace-font-name  "Inconsolata 12"
 }
 
