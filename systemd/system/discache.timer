@@ -2,6 +2,9 @@
 Description=Clean Cache
 
 [Timer]
-OnCalendar=daily
+OnCalendar=weekly
 RandomizedDelaySec=1m
 Persistent=true
+
+[Install]
+WantedBy=timers.target

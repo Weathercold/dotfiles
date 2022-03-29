@@ -1,1 +1,1 @@
-gui-wm/sway X -swaybar
+gui-wm/sway X -swaybar -swaylock
