@@ -35,7 +35,3 @@ location = /var/db/repos/nest
 sync-type = git
 sync-uri = https://github.com/gentoo-mirror/nest.git
 
-[torbrowser]
-location = /var/db/repos/torbrowser
-sync-type = git
-sync-uri = https://github.com/gentoo-mirror/torbrowser.git

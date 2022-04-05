@@ -1,0 +1,1 @@
+alias ani ani-cli

@@ -11,7 +11,7 @@
 
     "modules-left": ["clock", "idle_inhibitor", "backlight", "pulseaudio", "mpd"],
     "modules-center": ["sway/workspaces"],
-    "modules-right": ["network", "temperature", "cpu", "memory", "battery"],
+    "modules-right": ["network", "temperature", "cpu", "custom/gpu", "memory", "battery"],
 
     "sway/workspaces": {
         "disable-scroll-wraparound": true,
@@ -60,7 +60,7 @@
     "mpd": {
         "format": "{stateIcon}{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {volume}%",
         "format-disconnected": "",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
@@ -76,8 +76,8 @@
             "on": "1 "
         },
         "state-icons": {
-            "paused": "",
-            "playing": ""
+            "paused": "",
+            "playing": ""
         },
         "tooltip-format": "{artist}/{title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
     },
@@ -93,20 +93,29 @@
         "spacing": 10
     },
     "clock": {
-        "timezone": "America/Montreal",
-        "format": "{:%m-%d %H:%m}",
+        // "timezone": "America/Montreal",
+        "format": " {:%m-%d %H:%m}",
         "tooltip-format": "<big>{:%B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
-        "format": " {usage}%",
+        "format": " {usage}%  {avg_frequency}",
+	"on-click": ":"
+    },
+    "custom/gpu": {
+        "exec": "radeontop -l1 -d- | tr -d '\n' | cut -s -d',' -f3 | awk '{ print int($2+0.5) }' | tr -d '\n'",
+	"interval": 10,
+	"format": " {}%",
+	"tooltip": false,
+	"on-click": ":"
     },
     "memory": {
-        "format": " {}%"
+        "format": " {}%",
+	"on-click": ":"
     },
     "temperature": {
         "hwmon-path": "/sys/devices/pci0000:00/0000:00:08.1/0000:03:00.0/hwmon/hwmon3/temp1_input",
         "critical-threshold": 70,
-        "format": " {temperatureC}°C",
+        "format": " {temperatureC}°C"
     },
     "backlight": {
         "states": {
@@ -120,18 +129,19 @@
     },
     "battery": {
         "states": {
+	    "full": 100,
             "good": 99,
             "warning": 60,
-            "critical": 30
+            "critical": 20
         },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%  {power}",
-        "format-good": "{icon} {capacity}%  {power}",
+        "format": "{icon} {capacity}%  {power}",
+        "format-full": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
         "format-icons": ["", "", "", "", ""],
     },
     "network": {
         "interval": 30,
-        "interface": "wlp1s0",
+        "interface": "wlan0",
         "format-wifi": " {signalStrength}%",
         "format-disconnected": "",
         "tooltip-format": "{} as {ipaddr}"
