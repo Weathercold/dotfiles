@@ -17,15 +17,6 @@ dotfiles:
   d_swaylock:
     src: swaylock
     dst: ~/.config/swaylock
-  f_bashrc:
-    src: user/.bashrc
-    dst: ~/.bashrc
-  f_bash_profile:
-    src: user/.bash_profile
-    dst: ~/.bash_profile
-  f_profile:
-    src: user/.profile
-    dst: ~/.profile
   f_dotsync.timer:
     src: systemd-user/dotsync.timer
     dst: ~/.config/systemd/user/dotsync.timer
@@ -49,9 +40,6 @@ profiles:
     - d_sway
     - d_waybar
     - d_swaylock
-    - f_bashrc
-    - f_bash_profile
-    - f_profile
     - f_dotsync.timer
     - f_dotsync.service
     - f_starship.toml

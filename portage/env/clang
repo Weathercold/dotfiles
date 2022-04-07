@@ -1,4 +1,5 @@
-LDFLAGS="-Wl,-O1 -Wl,--as-needed"
-
 CC="clang"
 CXX="clang++"
+AR="llvm-ar"
+NM="llvm-nm"
+RANLIB="llvm-ranlib"
