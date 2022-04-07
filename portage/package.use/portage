@@ -1,1 +1,1 @@
-sys-apps/portage gentoo-dev -rsync-verify
+sys-apps/portage gentoo-dev -rsync-verify PYTHON_TARGETS: -* pypy3

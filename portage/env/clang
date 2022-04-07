@@ -1,0 +1,4 @@
+LDFLAGS="-Wl,-O1 -Wl,--as-needed"
+
+CC="clang"
+CXX="clang++"
