@@ -5,38 +5,55 @@ config:
   dotpath: ./
   keepdot: true
 dotfiles:
+  d_alacritty:
+    src: alacritty
+    dst: ~/.config/alacritty
+  d_sway:
+    src: sway
+    dst: ~/.config/sway
+  d_waybar:
+    src: waybar
+    dst: ~/.config/waybar
+  d_swaylock:
+    src: swaylock
+    dst: ~/.config/swaylock
+  f_starship.toml:
+    src: starship.toml
+    dst: ~/.config/starship.toml
+  d_fish:
+    src: fish
+    dst: ~/.config/fish
+    chmod: '700'
+  d_neofetch:
+    src: neofetch
+    dst: ~/.config/neofetch
   d_portage:
     src: portage
     dst: /etc/portage
-  d_bash:
-    src: bash
-    dst: /etc/bash
   f_fstab:
     src: etc/fstab
     dst: /etc/fstab
   d_greetd:
     src: greetd
     dst: /etc/greetd
-  f_nanorc:
-    src: etc/nanorc
-    dst: /etc/nanorc
   f_discache.timer:
     src: systemd/system/discache.timer
     dst: /etc/systemd/system/discache.timer
   f_discache.service:
     src: systemd/system/discache.service
     dst: /etc/systemd/system/discache.service
-  f_eix-sync.conf:
-    src: etc/eix-sync.conf
-    dst: /etc/eix-sync.conf
 profiles:
   Gentowo:
     dotfiles:
+    - d_alacritty
+    - d_sway
+    - d_waybar
+    - d_swaylock
+    - d_fish
     - d_portage
-    - d_bash
     - f_fstab
     - d_greetd
-    - f_nanorc
     - f_discache.timer
     - f_discache.service
-    - f_eix-sync.conf
+    - d_neofetch
+    - f_starship.toml
