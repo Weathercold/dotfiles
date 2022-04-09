@@ -1,16 +1,17 @@
+uservariables:
+  home: "absolute path to your home directory"
 config:
-  backup: true
-  banner: true
-  create: true
+  import_variables:
+    - uservariables.yaml:optional
   dotpath: ./
   keepdot: true
 dotfiles:
   d_alacritty:
     src: alacritty
-    dst: ~/.config/alacritty
+    dst: {{@@ home @@}}/.config/alacritty
   d_sway:
     src: sway
-    dst: ~/.config/sway
+    dst: /home/weathercold/.config/sway
   d_waybar:
     src: waybar
     dst: ~/.config/waybar
@@ -23,7 +24,6 @@ dotfiles:
   d_fish:
     src: fish
     dst: ~/.config/fish
-    chmod: '700'
   d_neofetch:
     src: neofetch
     dst: ~/.config/neofetch
@@ -42,6 +42,9 @@ dotfiles:
   f_discache.service:
     src: systemd/system/discache.service
     dst: /etc/systemd/system/discache.service
+  d_user:
+    src: systemd/user
+    dst: /etc/systemd/user
 profiles:
   Gentowo:
     dotfiles:
@@ -57,3 +60,4 @@ profiles:
     - f_discache.service
     - d_neofetch
     - f_starship.toml
+    - d_user
