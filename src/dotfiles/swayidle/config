@@ -1,0 +1,3 @@
+idlehint 300
+timeout 300 'light -O; light -S 10' resume 'light -I'
+timeout 600 'swaymsg -p output * dpms off' resume 'swaymsg -p output * dpms on'

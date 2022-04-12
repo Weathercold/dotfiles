@@ -16,11 +16,13 @@ set $right l
 
 # Your preferred applications
 set $menu rofi -show run
-set $term alacritty
-set $editor nvim
+set $term foot
 set $ide vscode
 set $browser firefox-bin
 set $torbrowser torbrowser-launcher
+
+# Environment variables
+exec export XDG_CURRENT_DESKTOP=Unity
 
 
 #
@@ -28,15 +30,10 @@ set $torbrowser torbrowser-launcher
 #
 ### Basics ###
 xwayland enable
-#exec export XDG_CURRENT_DESKTOP=Unity
 focus_wrapping no
 
 ### Idle ###
-exec swayidle -w \
-     timeout 600 'swaymsg -p "output eDP-1 dpms off"' \
-          resume 'swaymsg -p "output eDP-1 dpms on"' \
-    timeout 1200 'swaylock' \
-    before-sleep 'swaylock'
+exec swayidle
 
 ### Input ###
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -52,8 +49,8 @@ input "1739:52774:DELL09E3:00_06CB:CE26_Touchpad" {
     dwt enabled
 }
 
-### Style ###
-include style
+### Theme ###
+include theme
 
 ### Systemd Integration ###
 exec "systemctl --user import-environment; systemctl --user start sway-session.target"
@@ -75,7 +72,7 @@ bindsym {
     --no-repeat {
         # Kill focused window / sway
         $mod+Escape kill
-        --locked $mod+Alt+Escape exec "systemctl --user stop sway-session.target; swaymsg exit"
+        --locked $mod+Alt+Escape exec systemctl --user stop sway-session.target; exit
 
         # Lock sway / toggle display
         $mod+Alt+l exec swaylock
@@ -87,26 +84,26 @@ bindsym {
 
     ## Moving around ##
     # Move your focus around
-    $mod+$left focus left
-    $mod+$down focus down
-    $mod+$up focus up
+    $mod+$left  focus left
+    $mod+$down  focus down
+    $mod+$up    focus up
     $mod+$right focus right
 
-    $mod+Left focus left
-    $mod+Down focus down
-    $mod+Up focus up
-    $mod+Right focus right
+    $mod+Left   focus left
+    $mod+Down   focus down
+    $mod+Up     focus up
+    $mod+Right  focus right
 
     # Move the focused window with the same, but add Shift
-    $mod+Shift+$left move left
-    $mod+Shift+$down move down
-    $mod+Shift+$up move up
+    $mod+Shift+$left  move left
+    $mod+Shift+$down  move down
+    $mod+Shift+$up    move up
     $mod+Shift+$right move up
 
-    $mod+Shift+Left move left
-    $mod+Shift+Down move down
-    $mod+Shift+Up move up
-    $mod+Shift+Right move right
+    $mod+Shift+Left   move left
+    $mod+Shift+Down   move down
+    $mod+Shift+Up     move up
+    $mod+Shift+Right  move right
 
     ## Workspaces ##
     --no-repeat {
@@ -187,22 +184,24 @@ bindsym {
 
     ## Shortcuts ##
     --locked {
-        --no-repeat XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+        --no-repeat XF86AudioMute       exec pactl set-sink-mute @DEFAULT_SINK@ toggle
         --no-repeat Shift+XF86AudioMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-        XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -2%
-        Shift+XF86AudioLowerVolume exec pactl set-source-volume @DEFAULT_SOURCE@ -2%
-        XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +2%
-        Shift+XF86AudioRaiseVolume exec pactl set-source-volume @DEFAULT_SOURCE@ +2% 
-        --no-repeat XF86AudioPlay exec mpc toggle
-        XF86MonBrightnessDown exec light -U 5
-        XF86MonBrightnessUp exec light -A 5
+        XF86AudioLowerVolume            exec pactl set-sink-volume @DEFAULT_SINK@ -2%
+        Shift+XF86AudioLowerVolume      exec pactl set-source-volume @DEFAULT_SOURCE@ -2%
+        XF86AudioRaiseVolume            exec pactl set-sink-volume @DEFAULT_SINK@ +2%
+        Shift+XF86AudioRaiseVolume      exec pactl set-source-volume @DEFAULT_SOURCE@ +2% 
+        --no-repeat XF86AudioPlay       exec mpc toggle
+        XF86MonBrightnessDown           exec light -U 5
+        XF86MonBrightnessUp             exec light -A 5
     }
-    --no-repeat Print exec grim -q100 -l9 -g"$(slurp)"
-    --no-repeat Shift+Print exec grim -t ppm -g"$(slurp -p)" -
+    --no-repeat Print                   exec grim -l 9 -| swappy -f -
     
     ## Modes ##
-    --no-repeat $mod+g mode launch
-    --no-repeat $mod+r mode resize
+    --no-repeat {
+        $mod+g     mode launch
+        $mod+r     mode resize
+        $mod+Print mode prtscr
+    }
 }
 
 ### Resize mode ###
@@ -211,15 +210,15 @@ mode resize bindsym {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    $left resize shrink width 10px
-    $down resize grow height 10px
-    $up resize shrink height 10px
+    $left  resize shrink width 10px
+    $down  resize grow height 10px
+    $up    resize shrink height 10px
     $right resize grow width 10px
 
-    Left resize shrink width 10px
-    Down resize grow height 10px
-    Up resize shrink height 10px
-    Right resize grow width 10px
+    Left   resize shrink width 10px
+    Down   resize grow height 10px
+    Up     resize shrink height 10px
+    Right  resize grow width 10px
 
     # Return to default mode
     --no-repeat Escape mode default
@@ -227,12 +226,19 @@ mode resize bindsym {
 
 ### Launch mode ###
 mode launch bindsym --no-repeat {
-    m mode default; exec $menu
-    t mode default; exec $term
-    v mode default; exec $term -e $editor
-    j mode default; exec $term -e journalctl -fn1000 --no-hostname
-    e mode default; exec $ide
-    f mode default; exec $browser
-    d mode default; exec $torbrowser
+    m      mode default; exec $menu
+    t      mode default; exec $term
+    j      mode default; exec $term journalctl -fxn1000 --no-hostname
+    e      mode default; exec $ide
+    f      mode default; exec $browser
+    d      mode default; exec $torbrowser
     Escape mode default
+}
+
+### Screenshot mode ###
+mode prtscr bindsym --no-repeat {
+    f       mode default; exec grim -l 9 -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | \"\(.x),\(.y) \(.width)x\(.height)\"')" -| swappy -f -
+    r       mode default; exec grim -l 9 -g "$(slurp)" -| swappy -f -
+    p       mode default; exec grim -t ppm -g "$(slurp -p)" -| wl-copy
+    Escape  mode default
 }

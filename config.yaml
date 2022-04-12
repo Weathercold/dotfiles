@@ -1,17 +1,14 @@
 uservariables:
-  home: "absolute path to your home directory"
+  home: absolute path to your home directory
 config:
   import_variables:
-    - uservariables.yaml:optional
+  - uservariables.yaml:optional
   dotpath: ./
   keepdot: true
 dotfiles:
-  d_alacritty:
-    src: alacritty
-    dst: {{@@ home @@}}/.config/alacritty
   d_sway:
     src: sway
-    dst: /home/weathercold/.config/sway
+    dst: ~/.config/sway
   d_waybar:
     src: waybar
     dst: ~/.config/waybar
@@ -21,9 +18,6 @@ dotfiles:
   f_starship.toml:
     src: starship.toml
     dst: ~/.config/starship.toml
-  d_fish:
-    src: fish
-    dst: ~/.config/fish
   d_neofetch:
     src: neofetch
     dst: ~/.config/neofetch
@@ -45,14 +39,24 @@ dotfiles:
   d_user:
     src: systemd/user
     dst: /etc/systemd/user
+  d_swayidle:
+    src: src/dotfiles/swayidle
+    dst: ~/.config/swayidle
+  f_foot.ini:
+    src: src/dotfiles/foot/foot.ini
+    dst: ~/.config/foot/foot.ini
+  f_theme.ini:
+    src: src/dotfiles/catppuccin/foot/theme.ini
+    dst: ~/.config/foot/theme.ini
+  f_theme.fish:
+    src: src/dotfiles/catppuccin/fish/conf.d/theme.fish
+    dst: ~/.config/fish/conf.d/theme.fish
 profiles:
   Gentowo:
     dotfiles:
-    - d_alacritty
     - d_sway
     - d_waybar
     - d_swaylock
-    - d_fish
     - d_portage
     - f_fstab
     - d_greetd
@@ -61,3 +65,9 @@ profiles:
     - d_neofetch
     - f_starship.toml
     - d_user
+    - d_swayidle
+    - f_foot.ini
+  catppuccin:
+    dotfiles:
+    - f_theme.ini
+    - f_theme.fish
