@@ -1,26 +1,23 @@
-uservariables:
-  home: absolute path to your home directory
+dynvariables:
+  confdir: echo ${XDG_CONFIG_HOME:-$HOME/.config}
+actions:
+  switchtheme: swaymsg -p reload; echo {0} > {{@@ _dotdrop_dotpath @@}}/current_theme
 config:
-  import_variables:
-  - uservariables.yaml:optional
   dotpath: ./
   keepdot: true
 dotfiles:
-  d_sway:
-    src: sway
-    dst: ~/.config/sway
   d_waybar:
     src: waybar
-    dst: ~/.config/waybar
+    dst: "{{@@ confdir @@}}/waybar"
   d_swaylock:
     src: swaylock
-    dst: ~/.config/swaylock
+    dst: "{{@@ confdir @@/swaylock"
   f_starship.toml:
     src: starship.toml
-    dst: ~/.config/starship.toml
+    dst: "{{@@ confdir @@}}/starship.toml"
   d_neofetch:
     src: neofetch
-    dst: ~/.config/neofetch
+    dst: "{{@@ confdir @@}}/neofetch"
   d_portage:
     src: portage
     dst: /etc/portage
@@ -36,38 +33,45 @@ dotfiles:
   f_discache.service:
     src: systemd/system/discache.service
     dst: /etc/systemd/system/discache.service
-  d_user:
+  d_systemd_user:
     src: systemd/user
     dst: /etc/systemd/user
   d_swayidle:
-    src: src/dotfiles/swayidle
-    dst: ~/.config/swayidle
+    src: swayidle
+    dst: "{{@@ confdir @@}}/swayidle"
   f_foot.ini:
-    src: src/dotfiles/foot/foot.ini
-    dst: ~/.config/foot/foot.ini
-  f_theme.ini:
-    src: src/dotfiles/catppuccin/foot/theme.ini
-    dst: ~/.config/foot/theme.ini
-  f_theme.fish:
-    src: src/dotfiles/catppuccin/fish/conf.d/theme.fish
-    dst: ~/.config/fish/conf.d/theme.fish
+    src: foot/foot.ini
+    dst: "{{@@ confdir @@}}/foot/foot.ini"
+  f_cp_foot_theme.ini:
+    src: catppuccin/foot/theme.ini
+    dst: "{{@@ confdir @@}}/foot/theme.ini"
+  f_cp_fish_theme.fish:
+    src: catppuccin/fish/conf.d/theme.fish
+    dst: "{{@@ confdir @@}}/fish/conf.d/theme.fish"
+  f_sway_config:
+    src: sway/config
+    dst: "{{@@ confdir @@}}/sway/config"
 profiles:
-  Gentowo:
+  user:
     dotfiles:
-    - d_sway
     - d_waybar
     - d_swaylock
     - d_portage
+    - d_neofetch
+    - f_starship.toml
+    - d_swayidle
+    - f_foot.ini
+    - f_sway_config
+  system:
+    dotfiles:
     - f_fstab
     - d_greetd
     - f_discache.timer
     - f_discache.service
-    - d_neofetch
-    - f_starship.toml
-    - d_user
-    - d_swayidle
-    - f_foot.ini
+    - d_systemd_user
   catppuccin:
+    actions:
+    - switchtheme catppuccin
     dotfiles:
-    - f_theme.ini
-    - f_theme.fish
+    - f_cp_foot_theme.ini
+    - f_cp_fish_theme.fish

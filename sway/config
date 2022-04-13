@@ -24,6 +24,8 @@ set $torbrowser torbrowser-launcher
 # Environment variables
 exec export XDG_CURRENT_DESKTOP=Unity
 
+# Functions
+set $get_cur_ws swaymsg -pt get_workspaces -p | grep -oP '\d*(?= \(focused\))'
 
 #
 # Configuration
@@ -98,7 +100,7 @@ bindsym {
     $mod+Shift+$left  move left
     $mod+Shift+$down  move down
     $mod+Shift+$up    move up
-    $mod+Shift+$right move up
+    $mod+Shift+$right move right
 
     $mod+Shift+Left   move left
     $mod+Shift+Down   move down
@@ -136,21 +138,21 @@ bindsym {
 
     # Switch to adjacent workspace
     $mod+minus exec \
-        WS=$(swaymsg -tp get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
-        swaymsg -p workspace number $((WS <= 1 ? 1 : WS-1))
+        WS=$($get_cur_ws) && WS=$((WS <= 1 ? 1 : WS-1)) && \
+        swaymsg -p workspace number $WS
     $mod+equal exec \
-        WS=$(swaymsg -tp get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
-        swaymsg -p workspace number $((WS >= 10 ? 10 : WS+1))
+        WS=$($get_cur_ws) && WS=$((WS >= 10 ? 10 : WS+1)) && \
+        swaymsg -p workspace number $WS
 
     # Move focused container to adjacent workspace
     $mod+Shift+minus exec \
-        WS=$(swaymsg -tp get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
-        swaymsg -p move container to workspace number $((WS <= 1 ? 1 : WS-1)) && \
-        swaymsg -p workspace number $((WS <= 1 ? 1 : WS-1))
+        WS=$($get_cur_ws) && WS=$((WS <= 1 ? 1 : WS-1)) && \
+        swaymsg -p move container to workspace number $WS && \
+        swaymsg -p workspace number $WS
     $mod+Shift+equal exec \
-        WS=$(swaymsg -tp get_workspaces -p | grep -oP "\d* \(focused\)" | grep -oP "\d*") && \
-        swaymsg -p move container to workspace number $((WS >= 10 ? 10 : WS+1)) && \
-        swaymsg -p workspace number $((WS >= 10 ? 10 : WS+1))
+        WS=$($get_cur_ws) && WS=$((WS >= 10 ? 10 : WS+1)) && \
+        swaymsg -p move container to workspace number $WS && \
+        swaymsg -p workspace number $WS
 
     ## Layout stuff ##
     --no-repeat {
@@ -237,7 +239,7 @@ mode launch bindsym --no-repeat {
 
 ### Screenshot mode ###
 mode prtscr bindsym --no-repeat {
-    f       mode default; exec grim -l 9 -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | \"\(.x),\(.y) \(.width)x\(.height)\"')" -| swappy -f -
+    f       mode default; exec grim -l 9 -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" -| swappy -f -
     r       mode default; exec grim -l 9 -g "$(slurp)" -| swappy -f -
     p       mode default; exec grim -t ppm -g "$(slurp -p)" -| wl-copy
     Escape  mode default
