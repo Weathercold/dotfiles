@@ -1,9 +1,10 @@
 #!/bin/bash
 
 cd $(dirname "$BASH_SOURCE")
-git pull
-./dotdrop.sh update -fp user
-sudo ./dotdrop.sh update -fp system
+./dotdrop.sh update -bfp user
+./dotdrop.sh update -bfp system
+./dotdrop.sh update -bfp $(cat ./current_theme)
 git add .
 git commit -m "Autoupdate $(( $(git log -10 --pretty=format:%B | grep -Pom1 'Autoupdate \K\d*') + 1 ))"
+git pull
 git push

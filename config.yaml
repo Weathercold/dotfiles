@@ -6,9 +6,6 @@ config:
   dotpath: ./
   keepdot: true
 dotfiles:
-  d_waybar:
-    src: waybar
-    dst: '{{@@ confdir @@}}/waybar'
   d_swaylock:
     src: swaylock
     dst: '{{@@ confdir @@}}/swaylock'
@@ -21,9 +18,6 @@ dotfiles:
   d_portage:
     src: portage
     dst: /etc/portage
-  f_fstab:
-    src: etc/fstab
-    dst: /etc/fstab
   d_greetd:
     src: greetd
     dst: /etc/greetd
@@ -57,10 +51,18 @@ dotfiles:
   f_dotsync.timer:
     src: systemd-user/dotsync.timer
     dst: '{{@@ confdir @@}}/systemd/user/dotsync.timer'
+  d_swappy:
+    src: swappy
+    dst: '{{@@ confdir @@}}/swappy'
+  d_cp_waybar:
+    src: catppuccin/waybar
+    dst: '{{@@ confdir @@}}/waybar'
+  d_al_waybar:
+    src: ayu-light/waybar
+    dst: '{{@@ confdir @@}}/waybar'
 profiles:
   user:
     dotfiles:
-    - d_waybar
     - d_swaylock
     - d_neofetch
     - f_starship.toml
@@ -69,10 +71,10 @@ profiles:
     - f_sway_config
     - f_dotsync.service
     - f_dotsync.timer
+    - d_swappy
   system:
     dotfiles:
     - d_portage
-    - f_fstab
     - d_greetd
     - f_discache.timer
     - f_discache.service
@@ -83,3 +85,9 @@ profiles:
     dotfiles:
     - f_cp_foot_theme.ini
     - f_cp_fish_theme.fish
+    - d_cp_waybar
+  ayu-light:
+    actions:
+    - switchtheme ayu-light
+    dotfiles:
+    - d_al_waybar

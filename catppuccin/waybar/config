@@ -1,5 +1,5 @@
 [{
-    "name": "status",
+    "name": "main",
 
     "layer": "top",
     "position": "top",
@@ -9,9 +9,9 @@
     "mode": "dock",
     "ipc": true,
 
-    "modules-left": ["clock", "idle_inhibitor", "keyboard-state", "backlight", "pulseaudio", "mpd"],
-    "modules-center": ["sway/workspaces", "sway/mode"],
-    "modules-right": ["temperature", "network", "cpu", "memory", "battery"],
+    "modules-left": ["clock", "idle_inhibitor", "backlight", "pulseaudio", "mpd"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["network", "temperature", "cpu", "custom/gpu", "memory", "battery"],
 
     "sway/workspaces": {
         "disable-scroll-wraparound": true,
@@ -58,16 +58,15 @@
         }
     },
     "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+        "format": "{stateIcon}{consumeIcon}{randomIcon}{repeatIcon}{singleIcon} {volume}%",
+        "format-disconnected": "",
+        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}",
         "unknown-tag": "N/A",
         "interval": 2,
         "consume-icons": {
             "on": " "
         },
         "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
             "on": " "
         },
         "repeat-icons": {
@@ -77,11 +76,10 @@
             "on": "1 "
         },
         "state-icons": {
-            "paused": "",
-            "playing": ""
+            "paused": "",
+            "playing": ""
         },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+        "tooltip-format": "{artist}/{title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -95,21 +93,29 @@
         "spacing": 10
     },
     "clock": {
-        "interval": 1,
-        "timezone": "America/Montreal",
-        "format": "{:%m-%d %H:%m:%S}",
+        // "timezone": "America/Montreal",
+        "format": " {:%m-%d %H:%m}",
         "tooltip-format": "<big>{:%B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
-        "format": " {usage}%",
+        "format": " {usage}%  {avg_frequency}",
+	"on-click": ":"
+    },
+    "custom/gpu": {
+        "exec": "radeontop -l1 -d- | tr -d '\n' | cut -s -d',' -f3 | awk '{ print int($2+0.5) }' | tr -d '\n'",
+	"interval": 10,
+	"format": " {}%",
+	"tooltip": false,
+	"on-click": ":"
     },
     "memory": {
-        "format": " {}%"
+        "format": " {}%",
+	"on-click": ":"
     },
     "temperature": {
-        "hwmon-path": "/sys/devices/pci0000:00/0000:00:08.1/0000:03:00.0/hwmon/hwmon3/temp1_input",
+        "hwmon-path": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon7/temp1_input",
         "critical-threshold": 70,
-        "format": " {temperatureC}°C",
+        "format": " {temperatureC}°C"
     },
     "backlight": {
         "states": {
@@ -118,35 +124,35 @@
         },
         "format": "{icon} {percent}%",
         "format-icons": ["", "", ""],
-        "on-scroll-up": "light -A 5",
-        "on-scroll-down": "light -U 5"
+        "on-scroll-up": "light -A 1",
+        "on-scroll-down": "light -U 1"
     },
     "battery": {
         "states": {
-            "good": 95,
+	    "full": 100,
+            "good": 99,
             "warning": 60,
-            "critical": 30
+            "critical": 20
         },
-        "format": "{icon} {capacity}%",
+        "format": "{icon} {capacity}%  {power}",
+        "format-full": "{icon} {capacity}%",
         "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-alt": "{icon} {time}",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
     },
     "network": {
-        "interface": "wlp1s0",
         "interval": 30,
-        "format-wifi": "  {signalStrength}% as {ipaddr}",
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname} on {}"
+        "interface": "wlan0",
+        "format-wifi": " {signalStrength}%",
+        "format-disconnected": "",
+        "tooltip-format": "{} as {ipaddr}"
     },
     "pulseaudio": {
         "format": "{icon} {volume}% {format_source}",
-        "format-muted": "  0% {format_source}",
+        "format-muted": " {volume}% {format_source}",
         "format-bluetooth": "{icon} {volume}% {format_source}",
-        "format-bluetooth-muted": "  0% {format_source}",
+        "format-bluetooth-muted": "  {volume}% {format_source}",
         "format-source": " {volume}%",
-        "format-source-muted": " 0%",
+        "format-source-muted": " {volume}%",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -158,16 +164,17 @@
         },
         //"on-click": "pavucontrol"
     }
-}/*,
+},
 {
-    "name": "proc",
+    "name": "mode",
 
     "layer": "top",
-    "position": "left",
-    "width": 0,
-    "margin": "15 0 15 0",
+    "position": "bottom",
+    "height": 60,
+    "margin-bottom": 30,
 
-    "mode": "hide",
-    "exclusive": false,
-    "ipc": true
-}*/]
+    "mode": "overlay",
+    "ipc": true,
+    
+    "modules-center": ["sway/mode"]
+}]
