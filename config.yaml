@@ -8,16 +8,16 @@ config:
 dotfiles:
   d_waybar:
     src: waybar
-    dst: "{{@@ confdir @@}}/waybar"
+    dst: '{{@@ confdir @@}}/waybar'
   d_swaylock:
     src: swaylock
-    dst: "{{@@ confdir @@/swaylock"
+    dst: '{{@@ confdir @@}}/swaylock'
   f_starship.toml:
     src: starship.toml
-    dst: "{{@@ confdir @@}}/starship.toml"
+    dst: '{{@@ confdir @@}}/starship.toml'
   d_neofetch:
     src: neofetch
-    dst: "{{@@ confdir @@}}/neofetch"
+    dst: '{{@@ confdir @@}}/neofetch'
   d_portage:
     src: portage
     dst: /etc/portage
@@ -38,32 +38,40 @@ dotfiles:
     dst: /etc/systemd/user
   d_swayidle:
     src: swayidle
-    dst: "{{@@ confdir @@}}/swayidle"
+    dst: '{{@@ confdir @@}}/swayidle'
   f_foot.ini:
     src: foot/foot.ini
-    dst: "{{@@ confdir @@}}/foot/foot.ini"
+    dst: '{{@@ confdir @@}}/foot/foot.ini'
   f_cp_foot_theme.ini:
     src: catppuccin/foot/theme.ini
-    dst: "{{@@ confdir @@}}/foot/theme.ini"
+    dst: '{{@@ confdir @@}}/foot/theme.ini'
   f_cp_fish_theme.fish:
     src: catppuccin/fish/conf.d/theme.fish
-    dst: "{{@@ confdir @@}}/fish/conf.d/theme.fish"
+    dst: '{{@@ confdir @@}}/fish/conf.d/theme.fish'
   f_sway_config:
     src: sway/config
-    dst: "{{@@ confdir @@}}/sway/config"
+    dst: '{{@@ confdir @@}}/sway/config'
+  f_dotsync.service:
+    src: systemd-user/dotsync.service
+    dst: '{{@@ confdir @@}}/systemd/user/dotsync.service'
+  f_dotsync.timer:
+    src: systemd-user/dotsync.timer
+    dst: '{{@@ confdir @@}}/systemd/user/dotsync.timer'
 profiles:
   user:
     dotfiles:
     - d_waybar
     - d_swaylock
-    - d_portage
     - d_neofetch
     - f_starship.toml
     - d_swayidle
     - f_foot.ini
     - f_sway_config
+    - f_dotsync.service
+    - f_dotsync.timer
   system:
     dotfiles:
+    - d_portage
     - f_fstab
     - d_greetd
     - f_discache.timer
