@@ -1,7 +1,7 @@
 dynvariables:
   confdir: echo ${XDG_CONFIG_HOME:-$HOME/.config}
 actions:
-  switchtheme: swaymsg -p reload; echo {0} > {{@@ _dotdrop_dotpath @@}}/current_theme
+  switchtheme: echo {0} > {{@@ _dotdrop_dotpath @@}}/current_theme
 config:
   dotpath: ./
   keepdot: true
@@ -27,9 +27,6 @@ dotfiles:
   f_discache.service:
     src: systemd/system/discache.service
     dst: /etc/systemd/system/discache.service
-  d_systemd_user:
-    src: systemd/user
-    dst: /etc/systemd/user
   d_swayidle:
     src: swayidle
     dst: '{{@@ confdir @@}}/swayidle'
@@ -60,6 +57,18 @@ dotfiles:
   d_al_waybar:
     src: ayu-light/waybar
     dst: '{{@@ confdir @@}}/waybar'
+  d_systemd_user:
+    src: systemd/user
+    dst: /etc/systemd/user
+  f_al_sway_theme:
+    src: ayu-light/sway/theme
+    dst: '{{@@ confdir @@}}/sway/theme'
+  d_rofi:
+    src: rofi
+    dst: '{{@@ confdir @@}}/rofi'
+  f_theme.rasi:
+    src: catppuccin/rofi/themes/theme.rofi
+    dst: ~/.local/share/rofi/themes/theme.rasi
 profiles:
   user:
     dotfiles:
@@ -72,6 +81,7 @@ profiles:
     - f_dotsync.service
     - f_dotsync.timer
     - d_swappy
+    - d_rofi
   system:
     dotfiles:
     - d_portage
@@ -86,8 +96,10 @@ profiles:
     - f_cp_foot_theme.ini
     - f_cp_fish_theme.fish
     - d_cp_waybar
+    - f_cp_rofi_theme.rasi
   ayu-light:
     actions:
     - switchtheme ayu-light
     dotfiles:
     - d_al_waybar
+    - f_al_sway_theme
