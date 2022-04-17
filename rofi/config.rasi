@@ -1,5 +1,5 @@
 configuration {
-    modi: "run,drun";
+    modi: "run,drun,filebrowser";
     lines: 5;
     font: "Open Sans 14";
     show-icons: true;
@@ -11,8 +11,7 @@ configuration {
     hide-scrollbar: false;
     display-drun: "   Apps ";
     display-run: "   Run ";
-    display-window: " 﩯  window";
-    display-Network: " 󰤨  Network";
+    display-filebrowser: " 﩯browser";
     sidebar-mode: true;
 }
 
@@ -20,7 +19,7 @@ configuration {
 
 element-text, element-icon, mode-switcher {
     background-color: inherit;
-    text-color:       inherit;
+    text-color: inherit;
 }
 
 window {
@@ -72,7 +71,7 @@ listview {
 element {
     padding: 5px;
     background-color: @bg-col;
-    text-color: @fg-col  ;
+    text-color: @fg-col;
 }
 
 element-icon {
@@ -80,8 +79,8 @@ element-icon {
 }
 
 element selected {
-    background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    background-color: @selected-col;
+    text-color: @fg-col2;
 }
 
 mode-switcher {
