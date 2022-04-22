@@ -230,7 +230,7 @@ mode resize bindsym {
 mode launch bindsym --no-repeat {
     m      mode default; exec $menu
     t      mode default; exec $term
-    j      mode default; exec $term journalctl -fxn1000 --no-hostname
+    j      mode default; exec $term journalctl -fn1000 --no-hostname
     e      mode default; exec $ide
     f      mode default; exec $browser
     d      mode default; exec $torbrowser
