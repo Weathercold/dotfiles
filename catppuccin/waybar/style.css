@@ -1,157 +1,122 @@
-/*
-=============================================
-		Ayu palette
-=============================================
-Name	Normal	Light	Dark	Notes
-====	======	=====	====	=====
-accent	#FFAA33	#FFCC85	#	coolors
-black	#242936	#######	#1A1F29	
-blue	#399EE6	#73D0FF	#	ayu
-cyan	#4CBF99	#95E6CB #	ayu
-gray	#565B66	#CCCAC2	#5C6166	
-green	#6CBF43	#87D96C	#	ayu
-orange	#FA8D3E	#FFAD66	#	ayu
-pink	#FF7383	#FFADB7	#	l+co
-red	#E65050	#F2A6A6	#	l+co
-tomato	#F07171	#F28779	#	ayu
-violet	#A37ACC	#DFBFFF	#695380	
-white	#FCFCFC	#######	#######	
-yellow	#F2AE49	#FFD173	#	ayu
-*/
-
+/* Catppuccin */
+@define-color background #1E1D2F;
+@define-color highlight  #575268;
+@define-color foreground #D9E0EE;
+@define-color comment    #988BA2;
+@define-color cyan       #89DCEB;
+@define-color green      #ABE9B3;
+@define-color orange     #F8BD96;
+@define-color pink       #F5C2E7;
+@define-color blue       #96CDFB;
+@define-color red        #F28FAD;
+@define-color yellow     #FAE3B0;
 
 * {
-    padding: 0 9px;
-
-    font-family: Inconsolata Medium;
-    font-size: 17px;
-    color: #242936;
-
-    transition: background-color 0.2s;
+  border: none;
+  border-radius: 0;
+  font-family: "Open Sans";
+  font-size: 20px;
+  min-height: 0;
+  margin: 0 10px;
 }
 
-#waybar {
-    background: transparent;
+window#waybar.main {
+  background: @background;
+  border-bottom: 3px solid @pink;
+  color: @yellow;
 }
 
-tooltip {
-    background: #FCFCFC;
-}
-tooltip label {
-    text-shadow: none;
-}
-
-
-/*
- * Main
- */
-/* Left */
-#clock {
-    border-radius: 14px 0 0 15px;
-    background: #FCFCFC;
+@keyframes blink {
+  to {
+    background-color: @foreground;
+    color: @foreground;
+  }
 }
 
-#idle_inhibitor.activated {
-    background: #FCFCFC;
-}
-#idle_inhibitor.deactivated {
-    background: #242936;
-    color: #CCCAC2;
+:hovered {
+  
 }
 
-#backlight {
-    background: #242936;
-    color: #CCCAC2;
-}
-#backlight.dim {
-    background: #565B66;
-    color: #FCFCFC;
-}
-#backlight.bright {
-    background: #FCFCFC;
-    color: #242936;
-}
-
-#pulseaudio {
-    background: #FCFCFC;
-}
-
-#mpd {
-    border-radius: 0 15px 15px 0;
-    background: #FCFCFC;
-}
-
-/* Center */
-#workspaces {
-    border-radius: 15px;
-    padding: 0;
-    background: #FCFCFC;
-}
-#workspaces button {
-    border: none;
-    border-radius: 15px;
-    padding: 0 1.5px;
-}
-#workspaces button:hover {
-    background: @theme_unfocused_fg_color;
-}
-#workspaces button.focused {
-    background: #399EE6;
-}
-
-
-/* Right */
-#network {
-    border-radius: 15px 0 0 15px;
-    background: #73D0FF;
-}
-
-#temperature {
-    background: #FFAD66;
-}
-#temperature.critical {
-    background: #E65050;
-}
-
-#cpu {
-    background: darkslateblue;
-    color: #FCFCFC;
-}
-
-#custom-gpu {
-    background: #FF7383,
-}
-
-#memory {
-    background: #695380;
-    color: #FCFCFC;
+#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio {
+  margin: 0 10px;
 }
 
 #battery {
-    border-radius: 0 15px 15px 0;
-    background: #87D96C;
+  color: @green;
 }
+
+#battery.charging {
+  color: @green;
+}
+
 #battery.good {
-    background: #95E6CB;
+  color: @yellow;
 }
+
 #battery.warning {
-    background: #FFAA33;
+  color: @orange;
 }
+
 #battery.critical {
-    background: #E65050;
+  color: @pink;
 }
 
-
-/*
- * Mode
- */
-/* Center */
-#waybar.mode {
-    font-size: 30px;
+#battery.warning:not(.charging), #battery.critical:not(.charging) {
+  padding: 0 10px;
+  border-bottom: 3px solid @highlight; /* Same as window#waybar for consistency */
+  background: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-#mode {
-    border: 2px solid #565866;
-    border-radius: 30px;
-    background: #FCFCFC;
+#backlight {
+  color: @yellow;
+}
+
+#clock {
+  color: @pink;
+}
+
+#cpu {
+  color: @red;
+}
+
+#memory {
+  color: @cyan;
+}
+
+#network {
+  color: @blue;
+}
+
+#pulseaudio {
+  color: @cyan;
+}
+
+#temperature {
+  color: @orange;
+}
+
+#temperature.critical {
+  color: @red;
+}
+
+#workspaces button {
+  background: transparent;
+  color: @comment;
+  border-bottom: 3px solid transparent;
+  margin: 0;
+}
+
+#workspaces button.focused {
+  background: @highlight;
+  border-bottom: 2px solid white;
+  color: @orange;
+}
+
+window#waybar.mode {
+  background: transparent;
 }

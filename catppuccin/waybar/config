@@ -4,7 +4,6 @@
     "layer": "top",
     "position": "top",
     "height": 30,
-    "margin": "15 15 0 15",
 
     "mode": "dock",
     "ipc": true,
@@ -102,7 +101,8 @@
 	"on-click": ":"
     },
     "custom/gpu": {
-        "exec": "radeontop -l1 -d- | tr -d '\n' | cut -s -d',' -f3 | awk '{ print int($2+0.5) }' | tr -d '\n'",
+        //"exec": "radeontop -l1 -d- | tr -d '\n' | cut -s -d',' -f3 | awk '{ print int($2+0.5) }' | tr -d '\n'",
+	"exec": "cat /sys/class/drm/card0/device/gpu_busy_percent",
 	"interval": 10,
 	"format": " {}%",
 	"tooltip": false,
