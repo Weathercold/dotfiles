@@ -1,1 +1,1 @@
-media-sound/pulseaudio -daemon -alsa -alsa-plugin -bluetooth -gdbm -gtk -orc -ssl -udev -webrtc-aec
+media-sound/pulseaudio -daemon -bluetooth

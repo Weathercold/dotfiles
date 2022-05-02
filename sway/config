@@ -77,7 +77,7 @@ bindsym {
     --no-repeat {
         # Kill focused window / sway
         $mod+Escape kill
-        --locked $mod+Alt+Escape exec systemctl --user stop sway-session.target; exit
+        --locked $mod+Alt+Escape exec systemctl --user stop graphical-session.target; exit
 
         # Lock sway / toggle display
         $mod+Alt+l exec swaylock
