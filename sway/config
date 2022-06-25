@@ -205,7 +205,7 @@ bindsym {
     --no-repeat {
         $mod+g     mode launch
         $mod+r     mode resize
-        $mod+Print mode prtscr
+        $mod+p     mode prtscr
     }
 }
 

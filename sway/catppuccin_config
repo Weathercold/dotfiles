@@ -1,0 +1,47 @@
+#
+# Sway theme
+#
+output * bg ~/.config/sway/bg_catppuccin.png fill
+seat * xcursor_theme fuchsia 30
+font pango:open-sans 13
+default_border pixel 4
+default_floating_border none
+gaps {
+    inner 15
+    outer 3
+}
+
+### Colors
+set $border              #F8BD96
+set $border_inactive     #C9CBFF
+set $foreground          #DADAE8
+set $foreground_inactive #C3BAC6
+set $transparent         #00000000
+
+# client.class
+#   border
+#   background
+#   text
+#   indicator
+#   child_border
+
+client.focused \
+  $border \
+  $border \
+  $foreground \
+  $border \
+  $border
+
+client.unfocused \
+  $border_inactive \
+  $border_inactive \
+  $foreground_inactive \
+  $border_inactive \
+  $border_inactive
+
+client.focused_inactive \
+  $border_inactive \
+  $border_inactive \
+  $foreground_inactive \
+  $border_inactive \
+  $border_inactive

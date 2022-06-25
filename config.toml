@@ -12,7 +12,7 @@ keepdot = true
 src = "swaylock"
 dst = "{{@@ confdir @@}}/swaylock"
 
-[dotfiles."f_starship.toml"]
+[dotfiles."f_starship_starship.toml"]
 src = "starship.toml"
 dst = "{{@@ confdir @@}}/starship.toml"
 
@@ -28,11 +28,11 @@ dst = "{{@@ etcdir @@}}/portage"
 src = "greetd"
 dst = "{{@@ etcdir @@}}/greetd"
 
-[dotfiles."f_discache.timer"]
+[dotfiles."f_systemd_discache.timer"]
 src = "systemd/system/discache.timer"
 dst = "{{@@ etcdir @@}}/systemd/system/discache.timer"
 
-[dotfiles."f_discache.service"]
+[dotfiles."f_systemd_discache.service"]
 src = "systemd/system/discache.service"
 dst = "{{@@ etcdir @@}}/systemd/system/discache.service"
 
@@ -40,7 +40,7 @@ dst = "{{@@ etcdir @@}}/systemd/system/discache.service"
 src = "swayidle"
 dst = "{{@@ confdir @@}}/swayidle"
 
-[dotfiles."f_foot.ini"]
+[dotfiles."f_foot_foot.ini"]
 src = "foot/foot.ini"
 dst = "{{@@ confdir @@}}/foot/foot.ini"
 
@@ -56,11 +56,19 @@ dst = "{{@@ confdir @@}}/fish/themes/catppuccin.fish"
 src = "sway/config"
 dst = "{{@@ confdir @@}}/sway/config"
 
-[dotfiles."f_dotsync.service"]
+[dotfiles.f_sway_catppuccin_config]
+src = "sway/catppuccin_config"
+dst = "{{@@ confdir @@}}/sway/catppuccin_config"
+
+[dotfiles."f_sway_catppuccin.png"]
+src = "sway/catppuccin.png"
+dst = "{{@@ confdir @@}}/sway/catppuccin.png"
+
+[dotfiles."f_systemd_dotsync.service"]
 src = "systemd-user/dotsync.service"
 dst = "{{@@ confdir @@}}/systemd/user/dotsync.service"
 
-[dotfiles."f_dotsync.timer"]
+[dotfiles."f_systemd_dotsync.timer"]
 src = "systemd-user/dotsync.timer"
 dst = "{{@@ confdir @@}}/systemd/user/dotsync.timer"
 
@@ -68,49 +76,56 @@ dst = "{{@@ confdir @@}}/systemd/user/dotsync.timer"
 src = "swappy"
 dst = "{{@@ confdir @@}}/swappy"
 
-[dotfiles.d_cp_waybar]
-src = "catppuccin/waybar"
-dst = "{{@@ confdir @@}}/waybar"
+[dotfiles.f_waybar_catppuccin_config]
+src = "waybar/catppuccin_config"
+dst = "{{@@ confdir @@}}/waybar/catppuccin_config"
+
+[dotfiles."f_waybar_catppuccin.css"]
+src = "waybar/catppuccin.css"
+dst = "{{@@ confdir @@}}/waybar/catppuccin.css"
 
 [dotfiles.d_systemd_user]
 src = "systemd/user"
 dst = "{{@@ etcdir @@}}/systemd/user"
 
-[dotfiles.d_rofi]
-src = "rofi"
-dst = "{{@@ confdir @@}}/rofi"
+[dotfiles."f_rofi_config.rasi"]
+src = "rofi/config.rasi"
+dst = "{{@@ confdir @@}}/rofi/config.rasi"
 
-[dotfiles."f_cp_rofi_theme.rasi"]
-src = "catppuccin/rofi/themes/theme.rofi"
-dst = "~/.local/share/rofi/themes/theme.rasi"
+[dotfiles."f_rofi_catppuccin.rasi"]
+src = "rofi/catppuccin.rasi"
+dst = "{{@@ confdir @@}}/rofi/catppuccin.rasi"
 
 [profiles.user]
 dotfiles = [
   "d_swaylock",
   "d_neofetch",
-  "f_starship.toml",
+  "f_starship_starship.toml",
   "d_swayidle",
-  "f_foot.ini",
+  "f_foot_foot.ini",
   "f_sway_config",
-  "f_dotsync.service",
-  "f_dotsync.timer",
+  "f_systemd_dotsync.service",
+  "f_systemd_dotsync.timer",
   "d_swappy",
-  "d_rofi",
+  "f_rofi_config.rasi",
 ]
 
 [profiles.system]
 dotfiles = [
   "d_portage",
   "d_greetd",
-  "f_discache.timer",
-  "f_discache.service",
+  "f_systemd_discache.timer",
+  "f_systemd_discache.service",
   "d_systemd_user",
 ]
 
 [profiles.catppuccin]
 dotfiles = [
-  "f_cp_foot_theme.ini",
-  "f_cp_fish_theme.fish",
-  "d_cp_waybar",
-  "f_cp_rofi_theme.rasi",
+  "f_sway_catppuccin_config",
+  "f_sway_catppuccin.png",
+  "f_foot_catppuccin.ini",
+  "f_fish_catppuccin.fish",
+  "f_waybar_catppuccin_config",
+  "f_waybar_catppuccin.css",
+  "f_rofi_catppuccin.rasi",
 ]

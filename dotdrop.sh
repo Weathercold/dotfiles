@@ -18,7 +18,7 @@ fi
 args=("$@")
 cur=$(dirname "$(${rl} "${0}")")
 opwd=$(pwd)
-cfg="${cur}/config.yaml"
+cfg="${cur}/config.toml"
 sub="dotdrop"
 
 # pivot
@@ -26,12 +26,12 @@ cd "${cur}" || { echo "Directory \"${cur}\" doesn't exist, aborting." && exit 1;
 
 # init/update the submodule
 if [ "${DOTDROP_AUTOUPDATE-yes}" = yes ] ; then
-  git submodule update --init --recursive
+  # git submodule update --init --recursive
   git submodule update --remote dotdrop
 fi
 
 # check python executable
-pybin="python3.10"
+pybin="python3"
 hash ${pybin} 2>/dev/null || pybin="python"
 [[ "`${pybin} -V 2>&1`" =~ "Python 3" ]] || { echo "install Python 3" && exit 1; }
 
