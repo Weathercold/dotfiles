@@ -7,10 +7,10 @@ dotfiles
 Setup
 =====
 - OS: Gentoo
-- Kernel: gentoo-kernel w/ savedconfig
+- Kernel: `gentoo-kernel` using savedconfig
 - Init system: systemd
 - WM: sway
-- Term: alacritty
+- Term: foot
 |
 - Model: Dell Inspiron 7405 2n1
 - CPU: AMD Ryzen 7 4700U
@@ -19,7 +19,7 @@ Setup
 Credits
 =======
 - Catppuccin rofi theme from `catppuccin/rofi`_
-- Catppuccin sway theme from `dnordstrom/dotfiles`_
+- Catppuccin sway/waybar theme from `dnordstrom/dotfiles`_
 - Catppuccin foot theme from `catppuccin/foot`_
 
 .. _dotdrop: https://github.com/deadc0de6/dotdrop
