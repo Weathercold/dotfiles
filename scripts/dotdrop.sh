@@ -16,7 +16,7 @@ fi
 
 # setup variables
 args=("$@")
-cur=$(dirname "$(${rl} "${0}")")
+cur=$(dirname $(dirname "$(${rl} "${0}")"))
 opwd=$(pwd)
 cfg="${cur}/config.toml"
 sub="dotdrop"

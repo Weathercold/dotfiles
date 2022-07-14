@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd $(dirname "$BASH_SOURCE")
+cd $(dirname $(dirname $(readlink -f "$0")))
 ./dotdrop.sh update -bfp user
 ./dotdrop.sh update -bfp system
 ./dotdrop.sh update -bfp catppuccin

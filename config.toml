@@ -65,11 +65,11 @@ src = "sway/catppuccin.png"
 dst = "{{@@ confdir @@}}/sway/catppuccin.png"
 
 [dotfiles."f_systemd_dotsync.service"]
-src = "systemd-user/dotsync.service"
+src = "systemd/user/dotsync.service"
 dst = "{{@@ confdir @@}}/systemd/user/dotsync.service"
 
 [dotfiles."f_systemd_dotsync.timer"]
-src = "systemd-user/dotsync.timer"
+src = "systemd/user/dotsync.timer"
 dst = "{{@@ confdir @@}}/systemd/user/dotsync.timer"
 
 [dotfiles.d_swappy]
@@ -84,10 +84,6 @@ dst = "{{@@ confdir @@}}/waybar/catppuccin_config"
 src = "waybar/catppuccin.css"
 dst = "{{@@ confdir @@}}/waybar/catppuccin.css"
 
-[dotfiles.d_systemd_user]
-src = "systemd/user"
-dst = "{{@@ etcdir @@}}/systemd/user"
-
 [dotfiles."f_rofi_config.rasi"]
 src = "rofi/config.rasi"
 dst = "{{@@ confdir @@}}/rofi/config.rasi"
@@ -96,36 +92,19 @@ dst = "{{@@ confdir @@}}/rofi/config.rasi"
 src = "rofi/catppuccin.rasi"
 dst = "{{@@ confdir @@}}/rofi/catppuccin.rasi"
 
+[dotfiles."f_sway_catppuccin.desktop"]
+src = "wayland-sessions/sway_catppuccin.desktop"
+dst = "/usr/share/wayland-sessions/sway_catppuccin.desktop"
+
+[dotfiles."f_wayland-session.target"]
+src = "systemd/user/wayland-session.target"
+dst = "~/.config/systemd/user/wayland-session.target"
+
 [profiles.user]
-dotfiles = [
-  "d_swaylock",
-  "d_neofetch",
-  "f_starship_starship.toml",
-  "d_swayidle",
-  "f_foot_foot.ini",
-  "f_sway_config",
-  "f_systemd_dotsync.service",
-  "f_systemd_dotsync.timer",
-  "d_swappy",
-  "f_rofi_config.rasi",
-]
+dotfiles = [ "d_swaylock", "d_neofetch", "f_starship_starship.toml", "d_swayidle", "f_foot_foot.ini", "f_sway_config", "f_systemd_dotsync.service", "f_systemd_dotsync.timer", "d_swappy", "f_rofi_config.rasi", "f_wayland-session.target",]
 
 [profiles.system]
-dotfiles = [
-  "d_portage",
-  "d_greetd",
-  "f_systemd_discache.timer",
-  "f_systemd_discache.service",
-  "d_systemd_user",
-]
+dotfiles = [ "d_portage", "d_greetd", "f_systemd_discache.timer", "f_systemd_discache.service",]
 
 [profiles.catppuccin]
-dotfiles = [
-  "f_sway_catppuccin_config",
-  "f_sway_catppuccin.png",
-  "f_foot_catppuccin.ini",
-  "f_fish_catppuccin.fish",
-  "f_waybar_catppuccin_config",
-  "f_waybar_catppuccin.css",
-  "f_rofi_catppuccin.rasi",
-]
+dotfiles = [ "f_sway_catppuccin_config", "f_sway_catppuccin.png", "f_foot_catppuccin.ini", "f_fish_catppuccin.fish", "f_waybar_catppuccin_config", "f_waybar_catppuccin.css", "f_rofi_catppuccin.rasi", "f_sway_catppuccin.desktop",]

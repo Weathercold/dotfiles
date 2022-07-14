@@ -1,5 +1,0 @@
-config:
-  import_configs:
-  - config.toml
-dotfiles:
-profiles:
