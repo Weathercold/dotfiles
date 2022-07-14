@@ -3,8 +3,6 @@
 RTL8192E/boot.img
 RTL8192E/main.img
 RTL8192E/data.img
-TDA7706_OM_v2.5.1_boot.txt
-TDA7706_OM_v3.0.2_boot.txt
 a300_pfp.fw
 a300_pm4.fw
 advansys/mcode.bin
@@ -501,18 +499,12 @@ cadence/mhdp8546.bin
 carl9170-1.fw
 cavium/cnn55xx_ae.fw
 cavium/cnn55xx_se.fw
-cbfw-3.2.1.1.bin
-cbfw-3.2.3.0.bin
 cbfw-3.2.5.1.bin
 cmmb_vega_12mhz.inp
 cmmb_venice_12mhz.inp
 cnm/wave521c_j721s2_codec_fw.bin
-ct2fw-3.2.1.1.bin
-ct2fw-3.2.3.0.bin
 ct2fw-3.2.5.1.bin
 ctefx.bin
-ctfw-3.2.1.1.bin
-ctfw-3.2.3.0.bin
 ctfw-3.2.5.1.bin
 ctspeq.bin
 cxgb3/t3c_psram-1.1.0.bin
@@ -599,9 +591,6 @@ hfi1_pcie.fw
 hfi1_sbus.fw
 htc_7010.fw
 htc_9271.fw
-i2400m-fw-usb-1.4.sbcf
-i2400m-fw-usb-1.5.sbcf
-i6050-fw-usb-1.5.sbcf
 isci/isci_firmware.bin
 isdbt_nova_12mhz.inp
 isdbt_nova_12mhz_b0.inp

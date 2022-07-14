@@ -141,7 +141,7 @@
     },
     "network": {
         "interval": 30,
-        "interface": "wlan0",
+        "interface": "wlp1s0",
         "format-wifi": " {signalStrength}%",
         "format-disconnected": "",
         "tooltip-format": "{} as {ipaddr}"

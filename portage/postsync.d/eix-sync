@@ -7,7 +7,7 @@
 #   Martin V\"ath <martin@mvath.de> (complete rewrite)
 #
 # This script calls emerge --sync and shows the differences.
-# See the eix manpage for details. (eix 0.36.3).
+# See the eix manpage for details. (eix 0.36.4).
 set -u
 
 time_begin=`date '+%s' 2>/dev/null` || time_begin=
@@ -29,7 +29,7 @@ eixsyncconf=$local_portage_configroot/etc/eix-sync.conf
 
 Usage() {
 	n=${0##*/}
-	p='eix 0.36.3'
+	p='eix 0.36.4'
 	eval_pgettext 'eix-sync' 'Usage: ${n} [options]
 Call layman/emerge --sync/--metadata and show updates. (${p})
 

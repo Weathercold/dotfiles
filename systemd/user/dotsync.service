@@ -5,4 +5,4 @@ After=network.target
 [Service]
 Type=oneshot
 WorkingDirectory=/home/weathercold/src/dotfiles
-ExecStart=/home/weathercold/src/dotfiles/scripts/autoupdate.sh
+ExecStart=/home/weathercold/src/dotfiles/scripts/dotsync.sh

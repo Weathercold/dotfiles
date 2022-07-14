@@ -5,5 +5,5 @@ vt = next
 
 # The default session, also known as the greeter.
 [default_session]
-command = "tuigreet -tr --asterisks --cmd 'systemd-cat -t sway sway' --power-shutdown 'sudo systemctl poweroff' --power-reboot 'sudo systemctl reboot'"
+command = "tuigreet -tr --asterisks --cmd 'systemd-cat -t sway sway -c ~/.config/sway/catppuccin_config' --power-shutdown 'sudo systemctl poweroff' --power-reboot 'sudo systemctl reboot'"
 user = greetd

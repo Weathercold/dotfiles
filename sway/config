@@ -1,10 +1,7 @@
-# Config for sway
-# Read `man 5 sway` for a complete reference.
-
-
 #
 # Variables
 #
+
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
 
@@ -27,17 +24,25 @@ exec export XDG_CURRENT_DESKTOP=Unity
 # Functions
 set $get_cur_ws swaymsg -pt get_workspaces -p | grep -oP '\d*(?= \(focused\))'
 
+
 #
 # Configuration
 #
-### Basics ###
+
 xwayland enable
 focus_wrapping no
 
-### Idle ###
+# Idle daemon
 exec swayidle
 
-### Input ###
+# Systemd integration
+exec "systemctl --user import-environment; systemctl --user start wayland-session.target"
+
+
+#
+# Input
+#
+
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 input "1:1:AT_Translated_Set_2_keyboard" {
@@ -54,16 +59,11 @@ input "1739:52774:DELL09E3:00_06CB:CE26_Touchpad" {
     dwt            enabled
 }
 
-### Theme ###
-include theme
-
-### Systemd Integration ###
-exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-
 
 #
 # Key bindings
 #
+
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
@@ -72,8 +72,11 @@ exec "systemctl --user import-environment; systemctl --user start sway-session.t
 floating_modifier $mod normal
 
 ### Default mode ###
+
 bindsym {
+
     ## Basics ##
+
     --no-repeat {
         # Kill focused window / sway
         $mod+Escape kill
@@ -88,6 +91,7 @@ bindsym {
     }
 
     ## Moving around ##
+
     # Move your focus around
     $mod+$left  focus left
     $mod+$down  focus down
@@ -111,6 +115,7 @@ bindsym {
     $mod+Shift+Right  move right
 
     ## Workspaces ##
+
     --no-repeat {
         # Switch to workspace
         $mod+1 workspace number 1
@@ -158,6 +163,7 @@ bindsym {
         swaymsg -p workspace number $WS
 
     ## Layout stuff ##
+
     --no-repeat {
         # Switch the current container between different layout styles
         $mod+s layout stacking
@@ -178,8 +184,6 @@ bindsym {
     $mod+a focus parent
 
     ## Scratchpad ##
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
 
     # Show the next scratchpad window or hide the focused scratchpad window
     --no-repeat $mod+grave scratchpad show
@@ -188,6 +192,7 @@ bindsym {
     --no-repeat $mod+Shift+grave move scratchpad
 
     ## Shortcuts ##
+
     --locked {
         --no-repeat XF86AudioMute       exec pactl set-sink-mute @DEFAULT_SINK@ toggle
         --no-repeat Shift+XF86AudioMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
@@ -199,9 +204,10 @@ bindsym {
         XF86MonBrightnessDown           exec light -U 5
         XF86MonBrightnessUp             exec light -A 5
     }
-    --no-repeat Print                   exec grim -l 9 -| swappy -f -
+    --no-repeat Print                   exec 'grimshot --notify save screen ~/Pictures/Screenshots/save-$(date +%FT%T).png'
     
     ## Modes ##
+
     --no-repeat {
         $mod+g     mode launch
         $mod+r     mode resize
@@ -210,6 +216,7 @@ bindsym {
 }
 
 ### Resize mode ###
+
 mode resize bindsym {
     # left will shrink the containers width
     # right will grow the containers width
@@ -230,6 +237,7 @@ mode resize bindsym {
 }
 
 ### Launch mode ###
+
 mode launch bindsym --no-repeat {
     m      mode default; exec $menu
     t      mode default; exec $term
@@ -241,9 +249,10 @@ mode launch bindsym --no-repeat {
 }
 
 ### Screenshot mode ###
+
 mode prtscr bindsym --no-repeat {
-    f       mode default; exec grim -l 9 -g "$(swaymsg -t get_tree | jq -j '.. | select(.type?) | select(.focused).rect | "\(.x),\(.y) \(.width)x\(.height)"')" -| swappy -f -
-    r       mode default; exec grim -l 9 -g "$(slurp)" -| swappy -f -
-    p       mode default; exec grim -t ppm -g "$(slurp -p)" -| wl-copy
-    Escape  mode default
+    w      mode default; exec grimshot save window -| swappy -f -
+    r      mode default; exec grimshot save area  -| swappy -f -
+    # p      mode default; exec bash -c 'grim -t ppm -g "$(slurp -p)" -| tee >(notify-send) | wl-copy'
+    Escape mode default
 }
