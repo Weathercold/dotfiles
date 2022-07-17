@@ -1,5 +1,5 @@
 [Unit]
-Description=Sway Session
+Description=Wayland Session
 BindsTo=graphical-session.target
 Wants=graphical-session-pre.target
 After=graphical-session-pre.target
