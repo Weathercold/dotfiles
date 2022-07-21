@@ -11,13 +11,6 @@ set $down j
 set $up k
 set $right l
 
-# Your preferred applications
-set $menu rofi -show run
-set $term foot
-set $ide vscode
-set $browser firefox-bin
-set $torbrowser torbrowser-launcher
-
 # Environment variables
 exec export XDG_CURRENT_DESKTOP=Unity
 
@@ -80,14 +73,14 @@ bindsym {
     --no-repeat {
         # Kill focused window / sway
         $mod+Escape kill
-        --locked $mod+Alt+Escape exec systemctl --user stop graphical-session.target; exit
+        --locked $mod+Ctrl+Escape exec systemctl --user stop graphical-session.target; exit
 
         # Lock sway / toggle display
-        $mod+Alt+l exec swaylock
+        $mod+Ctrl+l exec swaylock
         --locked $mod+d output eDP-1 dpms toggle
 
         # Reload the configuration file
-        $mod+Alt+r reload
+        $mod+Ctrl+r reload
     }
 
     ## Moving around ##
@@ -209,7 +202,7 @@ bindsym {
     ## Modes ##
 
     --no-repeat {
-        $mod+g     mode launch
+        $mod+n     mode launch
         $mod+r     mode resize
         $mod+p     mode prtscr
     }
@@ -222,15 +215,15 @@ mode resize bindsym {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    $left  resize shrink width 10px
-    $down  resize grow height 10px
-    $up    resize shrink height 10px
-    $right resize grow width 10px
+    $left  resize shrink width 20px
+    $down  resize grow height 20px
+    $up    resize shrink height 20px
+    $right resize grow width 20px
 
-    Left   resize shrink width 10px
-    Down   resize grow height 10px
-    Up     resize shrink height 10px
-    Right  resize grow width 10px
+    Left   resize shrink width 20px
+    Down   resize grow height 20px
+    Up     resize shrink height 20px
+    Right  resize grow width 20px
 
     # Return to default mode
     --no-repeat Escape mode default
@@ -239,12 +232,12 @@ mode resize bindsym {
 ### Launch mode ###
 
 mode launch bindsym --no-repeat {
-    m      mode default; exec $menu
-    t      mode default; exec $term
-    j      mode default; exec $term journalctl -fn1000 --no-hostname
-    e      mode default; exec $ide
-    f      mode default; exec $browser
-    d      mode default; exec $torbrowser
+    m      mode default; exec rofi -show run
+    t      mode default; exec foot -d error
+    j      mode default; exec foot -d error journalctl -fn1000 --no-hostname
+    e      mode default; exec vscode
+    f      mode default; exec firefox-bin
+    d      mode default; exec torbrowser-launcher
     Escape mode default
 }
 
