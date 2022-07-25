@@ -1,1 +1,1 @@
-gui-wm/sway grimshot -swaybar -swaylock
+gui-wm/sway grimshot -swaybar -tray -swaylock
